@@ -38,11 +38,13 @@ public class ColonyMonitor {
 		tickCount++;
 		if (tickCount >= MCConfig.TICK_RATE.get()) {
 			tickCount = 0;
+			var server = event.getServer();
 			AtomicBoolean raidChanged = new AtomicBoolean(false);
 			AtomicBoolean warehouseChanged = new AtomicBoolean(false);
 			IColonyManager colonyManager = MinecoloniesAPIProxy.getInstance().getColonyManager();
 			colonyManager.getAllColonies().stream().forEach(colony -> {
 				ColonyIdentifier identifier = new ColonyIdentifier(colony.getWorld().dimension().location(), colony.getID());
+				var localLevel = server.getLevel(colony.getWorld().dimension());
 				boolean willRaid = colony.getRaiderManager().willRaidTonight();
 				if (INSTANCE.getIncomingRaidMap().getOrDefault(identifier, !willRaid) != willRaid) {
 					raidChanged.set(true);
@@ -50,7 +52,7 @@ public class ColonyMonitor {
 				}
 				List<IBuilding> warehouses = colony.getServerBuildingManager().getBuildings().values().stream().filter(building -> building instanceof BuildingWareHouse).toList();
 				for (int index = 0; index < warehouses.size(); index++) {
-					if (event.getServer().getLevel(colony.getWorld().dimension()).getBlockEntity(warehouses.get(index).getID()) instanceof TileEntityWareHouse warehouse) {
+					if (localLevel.isAreaLoaded(warehouses.get(index).getID(), 10) && localLevel.getBlockEntity(warehouses.get(index).getID()) instanceof TileEntityWareHouse warehouse) {
 						var cap = warehouse.getItemHandlerCap();
 						if (cap != null) {
 							int freeSlots = 0;
