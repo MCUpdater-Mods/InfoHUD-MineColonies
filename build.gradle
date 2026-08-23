@@ -26,6 +26,9 @@ sourceSets.main.resources {
 }
 
 repositories {
+    maven {
+        url = "https://www.cursemaven.com"
+    }
     // Add here additional repositories if required by some of the dependencies below.
 }
 
@@ -103,6 +106,17 @@ dependencies {
     // And its provides the option to then use net.minecraft as the group, and one of; client, server or joined as the module name, plus the game version as version.
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    implementation "curse.maven:mcu-infohud-1273522:${infohud_fileid}"
+    runtimeOnly "curse.maven:curios-309927:${curios_fileid}"
+    compileOnly "curse.maven:curios-309927:${curios_fileid}"
+
+    implementation "curse.maven:minecolonies-245506:${minecolonies_fileid}"
+    implementation "curse.maven:domum-ornamentum-527361:${domum_fileid}"
+    implementation "curse.maven:structurize-298744:${structurize_fileid}"
+    implementation "curse.maven:multi-piston-303278:${multipiston_fileid}"
+    implementation "curse.maven:blockui-522992:${blockui_fileid}"
+    implementation "curse.maven:towntalk-900364:${towntalk_fileid}"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

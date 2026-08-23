@@ -1,0 +1,13 @@
+{
+  "infohud_minecolonies.configuration.tick_rate": "Ticks between colony polling",
+  "infohud_minecolonies.configuration.tick_rate.tooltip": "Increase if TPS lag is an issue",
+  "infohudmc.stage.build_solid": "Building",
+  "infohudmc.stage.clear": "Clearing Area",
+  "infohudmc.stage.clear_non_solids": "Clearing Old Blocks",
+  "infohudmc.stage.clear_water": "Clearing Water",
+  "infohudmc.stage.decorate": "Decorating",
+  "infohudmc.stage.remove": "Removing Blocks",
+  "infohudmc.stage.remove_water": "Removing Water",
+  "infohudmc.stage.spawn": "Spawning",
+  "infohudmc.stage.weak_solid": "Building Weak Blocks"
+}
